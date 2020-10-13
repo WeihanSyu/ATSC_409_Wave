@@ -3,12 +3,20 @@ import matplotlib.pylab as plt
 #Removing all the first 4 functions from our primary matrices by just setting a variable equal to the functions
 #At specific parameter (N,h,Amax, etc.) made our main matrix functions and calculations soooo much faster.
 #Except we have to manually switch parameters again and again for different cases.
-def dRange(N):
+
+# d: depth, measured from surface
+# h: approximate depth of the bottom of the ocean's surface layer
+# Ah: The eddy viscosity or mixing coefficient
+# derAh: the finite difference derivative matrix for mixing coefficients
+# IoMatrix: the light intensity matrix on right side of Ax = b equation
+# All together: Ax = b >>> Tmatrix[T] = IoMatrix; solve for T for all depths
+
+def dRange(N):      
     d = np.arange(0,(200+1/N),(200/N))   #step size = final value - initial value / N subdivisions 
     return d
 d = dRange(1000)
 
-def dh(N,h):      
+def dh(N,h):      # Could have just changed dRange(N) to d here since we already decided to define d above
     i = next(x[0] for x in enumerate(dRange(N)) if x[1] > h)
     #First index in array d that is greater than h, note it counts 0 as first index
     #So if element 22 in d is greater than h, that means d[21], i = 21
