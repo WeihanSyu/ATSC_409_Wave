@@ -100,9 +100,8 @@ def t1(u, v, h, g, H, dx, dy, dt, ho):
 
 
 # About the leap_frog function below:
-# First of all our arrays have m+1 rows and n+1 columns thus, the indices are from 0:m and 0:n
-# Recall in Python, index calling works like range() function where [1:m] calls [1:m-1] index wise
-# Our boundary conditions already take care of [:, 0], [:, n], [0, :], [m, :] so we need to exclude these areas.
+# Our arrays have m+1 rows and n+1 columns, so the indices are from 0:m and 0:n
+# Our boundary conditions already take care of positions -> [:, 0], [:, n], [0, :], [m, :] so we need to exclude these areas.
 def leap_frog(u, v, h, g, H, m, n, dt, dx, dy):
     for i in np.arange(1, n):
         u.next[1:m, i] = u.prev[1:m, i] - dt*u.now[1:m, i]*(u.now[1:m, i+1] - u.now[1:m, i-1])/dx - \
