@@ -186,7 +186,7 @@ def model(args):
     ho = 4  # initial source perturbation height [cm]
     p = 1E-3  # density water [kg/cm^3]
     mb = 1E-6  # mass ball [kg]
-    vbi = 5  # initial velocity ball [cm/s]
+    vbi = 200  # initial velocity ball [cm/s]
 
     u = Wave_field(n, m, l)
     v = Wave_field(n, m, l)
@@ -227,7 +227,8 @@ def model(args):
     z = dx / 2 * np.outer(np.ones(np.size(b)), np.cos(c))
 
     fig = plt.figure()
-    ax = fig.gca(projection='3d')
+    # ax = fig.gca(projection='3d') -> New matplotlib version removed the args on gca()
+    ax = fig.add_subplot(projection='3d')
     ax.set_xlim(0, dx * n)
     ax.set_ylim(0, dy * m)
     ax.set_zlim(-H, 7)
@@ -241,16 +242,14 @@ def model(args):
     X, Y = np.meshgrid(X, Y)
 
     def animation_frame(i):
-        # h.field[i, 0:(m+1):2, 0:(n+1):2]
-        # h.field[i, :, :]
         ax.clear()
         ax.set_xlim(0, dx * n)
         ax.set_ylim(0, dy * m)
         ax.set_zlim(-H, 7)
         # ax.grid(False)
         # surf = ax.plot_surface(X, Y, h.field[i, :, :], alpha=0.4, cmap='Blues', linewidth=0, antialiased=False)
-        surf = ax.plot_surface(X, Y, h.field[i, 0:(m+1):2, 0:(n+1):2], alpha=0.4, cmap='Blues', linewidth=0, antialiased=False)
-        # surf = ax.plot_surface(x + xspace[i], y + yspace[i], z - (dx / 2), color='black')
+        surf = ax.plot_surface(X, Y, h.field[i, 0:(m+1):2, 0:(n+1):2], alpha=0.4, cmap='Blues', linewidth=0, antialiased=False)  # Animates the waves
+        surf = ax.plot_surface(x + xspace[i], y + yspace[i], z - (dx / 2), color='black')   # Animates the particle (ball)
         return
     
     animation = FuncAnimation(fig, func=animation_frame, frames=np.arange(0, (l + 1), 1), interval=5, repeat=True)
