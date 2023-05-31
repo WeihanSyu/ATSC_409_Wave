@@ -1,5 +1,5 @@
 # Learning Git in VSCode
-Our files for this repository is located in C:/Users/Weihan/vs_code_test/my_project
+Our files for this repository is located in C:/Users/Weihan/PersonalProjects
 
 - second commit
 - another line
