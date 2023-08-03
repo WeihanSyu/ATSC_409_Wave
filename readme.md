@@ -15,6 +15,7 @@ surf = ax.plot_surface(X, Y, h.field[i, 0:(m+1):2, 0:(n+1):2], alpha=0.4, cmap='
 surf = ax.plot_surface(x + xspace[i], y + yspace[i], z - (dx / 2), color='black')  
 ```
 </details>
+
 * The output of this script consists of two animations. One for the wave field and one for the ball. 
 * Using them in conjunction makes the animation quite choppy.
 * Turn off the ball to see a smooth wave field animation.
