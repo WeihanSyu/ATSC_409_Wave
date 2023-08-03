@@ -34,8 +34,6 @@ def initial_cond(u, v, h, t, ho):
     h.prev[(len(h.prev)//2), (len(h.prev[0, :])*4//5)] = ho*np.cos(np.pi*t/0.024)
 
 
-# Note: For our boundary conditions, we are using 'no-slip' and 'no-penetration' conditions so fluid particles on
-# the wall move with the velocity of the wall (zero in this case)
 def b_cond(u_array, v_array, h_array, n, m, dt, ho, timestep):
     t = dt*timestep
 
@@ -124,11 +122,11 @@ def ball_water(u, v, p, mb, vbi, dx, dy, n, m, l, dt):
 
     Pixw = mw * u.field
     Pfxw = r * Pixw
-    Pixb = np.zeros(l + 1)  # np.zeros makes floats, we need an integer value first to start off our indices.
-    Pixb[0] = 0  # so manually input 0
+    Pixb = np.zeros(l + 1)  
+    Pixb[0] = 0 
     Pfxb = np.zeros(l + 1)
     xstep = np.zeros(l + 1)
-    xstep[0] = int(round((n + 1) / 2))  # round() may make floats, so again use int() to convert.
+    xstep[0] = int(round((n + 1) / 2))  
     Pfxb[0] = Pixw[0, 0, int(xstep[0])] + Pixb[0] - Pfxw[0, 0, int(xstep[0])]
     vfxb = np.zeros(l + 2)
     vfxb[1] = Pfxb[0] / mb
@@ -232,11 +230,11 @@ def model(args):
     ax.set_xlim(0, dx * n)
     ax.set_ylim(0, dy * m)
     ax.set_zlim(-H, 7)
-    '''X = np.arange(0, (dx * n + dx), dx)     # works like range()
+    '''X = np.arange(0, (dx * n + dx), dx)    
     Y = np.arange(0, (dy * m + dy), dy)
     X, Y = np.meshgrid(X, Y)'''
 
-    # Plot every second grid point instead:
+    # Plot every second grid point instead of every single point:
     X = np.arange(0, (dx * n + dx), 2*dx)
     Y = np.arange(0, (dy * m + dy), 2*dy)
     X, Y = np.meshgrid(X, Y)
@@ -257,17 +255,12 @@ def model(args):
     plt.show()
     return 
 
-# The ups and downs are not instability.  Because I have not staggered my grid it's only using every
-# second grid point.  Plotting every second grid point should give a nice smooth flow.
 
-# IMPORTANT NOTE: When plotting every second point, we are getting even numbered indices only and sometimes this
+# IMPORTANT: When plotting every second point, we are getting even numbered indices only and sometimes this
 # may exclude the points that our two drums lie on. Thus we must always choose m and n such that the drum points are
 # always included.
 # drum 1: [(m+1)*3//4, (n+1)//5]
 # drum 2: [(m+1)//2, (n+1)*4//5]
-# These must all be even numbers. m = 47, n = 20 works
 
-# The reason our animation moves so choppy is because the animation has to follow the slower one which is our object.
-# The ball just moves choppy.
-# To rectify this, we would need to give more frames for our ball but I don't know how to combine this with the waves
-model((150,47,20))
+# Example Setup
+model((100,47,20))
