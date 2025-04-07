@@ -1,5 +1,5 @@
 # Particle Movement Through a Shallow Water Wave Field
-** Full Model and code explanation provided in the pdf**
+**Full Model and code explanation provided in the pdf**
 
 Consider a rectangular area with all sides enclosed:
 * There are two points in the area that will periodically generate waves.
