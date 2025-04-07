@@ -1,5 +1,5 @@
 # Particle Movement Through a Shallow Water Wave Field
-**Model and code explanation provided in the pdf**
+** Full Model and code explanation provided in the pdf**
 
 Consider a rectangular area with all sides enclosed:
 * There are two points in the area that will periodically generate waves.
@@ -16,6 +16,7 @@ surf = ax.plot_surface(x + xspace[i], y + yspace[i], z - (dx / 2), color='black'
 ```
 </details>
 
-* The output of this script consists of two animations. One for the wave field and one for the ball. 
+* Calling the "model" function in the shallow_water_wave_field python file will generate the wave and ball animation.
+* The above code snippet shows the code to generate the wave plot (1st line) and the ball movement (2nd line).
 * Using them in conjunction makes the animation quite choppy.
-* Turn off the ball to see a smooth wave field animation.
+* Comment out the ball to see a smooth wave field animation.
