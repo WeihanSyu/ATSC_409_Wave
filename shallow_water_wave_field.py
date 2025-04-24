@@ -230,9 +230,6 @@ def model(args):
     ax.set_xlim(0, dx * n)
     ax.set_ylim(0, dy * m)
     ax.set_zlim(-H, 7)
-    '''X = np.arange(0, (dx * n + dx), dx)    
-    Y = np.arange(0, (dy * m + dy), dy)
-    X, Y = np.meshgrid(X, Y)'''
 
     # Plot every second grid point instead of every single point:
     X = np.arange(0, (dx * n + dx), 2*dx)
@@ -244,8 +241,6 @@ def model(args):
         ax.set_xlim(0, dx * n)
         ax.set_ylim(0, dy * m)
         ax.set_zlim(-H, 7)
-        # ax.grid(False)
-        # surf = ax.plot_surface(X, Y, h.field[i, :, :], alpha=0.4, cmap='Blues', linewidth=0, antialiased=False)
         surf = ax.plot_surface(X, Y, h.field[i, 0:(m+1):2, 0:(n+1):2], alpha=0.4, cmap='Blues', linewidth=0, antialiased=False)  # Animates the waves
         surf = ax.plot_surface(x + xspace[i], y + yspace[i], z - (dx / 2), color='black')   # Animates the particle (ball)
         return
@@ -257,8 +252,7 @@ def model(args):
 
 
 # IMPORTANT: When plotting every second point, we are getting even numbered indices only and sometimes this
-# may exclude the points that our two drums lie on. Thus we must always choose m and n such that the drum points are
-# always included.
+# may exclude the points that our two drums lie on. Thus we must always choose m and n such that the drum points are always EVEN numbered.
 # drum 1: [(m+1)*3//4, (n+1)//5]
 # drum 2: [(m+1)//2, (n+1)*4//5]
 
