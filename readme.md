@@ -7,6 +7,9 @@ Consider a rectangular area with all sides enclosed:
 * Next, consider a ball of some mass and initial velocity.
 * This project will focus on the movement of the ball through the wave field using simple momentum equations to derive the interaction between the water and the ball.
 
+## Example model run
+![test run for model](https://github.com/WeihanSyu/ATSC_409_Wave/blob/main/animation.gif)
+
 <details>
 <summary><b>Code snippet</b></summary>
 
